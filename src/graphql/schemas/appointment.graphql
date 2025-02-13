@@ -1,0 +1,37 @@
+type Appointment {
+  id: ID!
+  diagnosis: String!
+  date: String!
+  time: String!
+  status: String!
+  user: User!
+}
+
+input CreateAppointmentInput {
+  diagnosis: String!
+  date: String!
+  time: String!
+}
+
+input UpdateAppointmentInput {
+  id: ID!
+  diagnosis: String
+  date: String
+  time: String
+  status: String
+}
+
+input DeleteAppointmentInput {
+  id: ID!
+}
+
+type Query {
+  appointments: [Appointment]!
+  appointment(id: ID!): Appointment!
+}
+
+type Mutation {
+  createAppointment(input: CreateAppointmentInput!): Appointment!
+  updateAppointment(input: UpdateAppointmentInput): Appointment!
+  deleteAppointment(input: DeleteAppointmentInput!): Appointment!
+}

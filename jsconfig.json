@@ -1,0 +1,10 @@
+{
+  "compilerOptions": {
+    "target": "es6",                  // Specify the JavaScript version (e.g., "es6" for ES2015).
+    "module": "es6",              // Use "commonjs" for Node.js modules or "es6" for modern JS modules.
+    "allowSyntheticDefaultImports": true, // Enable default imports for legacy modules.
+    "baseUrl": ".",                    // Set the base URL for module resolution.
+  },
+  "include": ["src/**/*"],             // Specify which files to include (e.g., all files in "src").
+  "exclude": ["node_modules", "dist"]  // Exclude files and folders from the project.
+}
