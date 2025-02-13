@@ -7,6 +7,7 @@ async function setupDatabase() {
   await schema.dropTableIfExists('motorcycle');
   await schema.dropTableIfExists('user');
   await schema.dropTableIfExists('appointment');
+  await schema.dropTableIfExists('alert');
 
   await schema.createTable('motorcycle', (table) => {
     table.text('id').notNullable().primary();
@@ -37,6 +38,18 @@ async function setupDatabase() {
     table.text('date').notNullable();
     table.text('time').notNullable();
     table.enu('status', ['Pending', 'Completed']).notNullable();
+  });
+
+  await schema.createTable('alert', (table) => {
+    table.text('id').notNullable().primary();
+    table
+      .text('appointmentId')
+      .notNullable()
+      .references('id')
+      .inTable('appointment');
+    table.text('alertCode').notNullable();
+    table.text('alertDescription').notNullable();
+    table.text('createdAt').notNullable();
   });
 
   await connection.table('motorcycle').insert([
@@ -93,6 +106,23 @@ async function setupDatabase() {
       date: '2025-01-26',
       time: '11:20 AM',
       status: 'Pending',
+    },
+  ]);
+
+  await connection.table('alert').insert([
+    {
+      id: 'f49JzmL0nVcz',
+      appointmentId: 'f3YzmnBZpK0o',
+      alertCode: 'P0300',
+      alertDescription: 'Random/Multiple Cylinder Misfire Detected',
+      createdAt: '2023-01-31T11:00:00.000Z',
+    },
+    {
+      id: 'f50JzmL0nVKl',
+      appointmentId: 'f3YzmnBZpK0o',
+      alertCode: 'B1900',
+      alertDescription: 'Air Bag Circuit Short to Battery',
+      createdAt: '2023-01-21T11:00:00.000Z',
     },
   ]);
 

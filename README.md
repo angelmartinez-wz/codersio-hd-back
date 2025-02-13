@@ -100,6 +100,11 @@ query {
     time
     status
     diagnosis
+    alerts {
+      id
+      alertCode
+      alertDescription
+    }
     user {
       id
       phone
@@ -249,6 +254,94 @@ mutation($input: DeleteAppointmentInput!) {
 {
   "input": {
     "id": "lX6qilju9NQA"
+  }
+}
+```
+
+### Get Alerts
+```gql
+query {
+  alerts {
+    id
+    alertCode
+    alertDescription
+    appointment {
+      id
+      diagnosis
+      date
+      time
+      user {
+        id
+        name
+        motorcycle {
+          id
+          model
+          plate
+        }
+      }
+    }
+  }
+}
+```
+
+### Add Alerts
+```gql
+query {
+  alerts {
+    id
+    alertCode
+    alertDescription
+    appointment {
+      id
+      diagnosis
+      date
+      time
+      user {
+        id
+        name
+        motorcycle {
+          id
+          model
+          plate
+        }
+      }
+    }
+  }
+}
+```
+
+```gql
+# Variables
+{
+  "input": {
+    "appointmentId": "f3YzmnBZpK0o",
+    "alerts": [
+      {
+        "alertCode": "P0420",
+        "alertDescription": "Idle Air Control Valve (IAC) Malfunction"
+      },
+      {
+        "alertCode": "P0115",
+        "alertDescription": "Engine Coolant Temperature Sensor Circuit Malfunction"
+      }
+    ]
+  }
+}
+```
+
+### Subscription Alerts
+```gql
+subscription {
+  alertAdded {
+    id
+    alertCode
+    alertDescription
+    appointment {
+      id
+      user {
+        email
+      }
+    }
   }
 }
 ```

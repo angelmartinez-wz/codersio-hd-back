@@ -1,4 +1,10 @@
 import {
+  Alert,
+  MutationAlert,
+  QueryAlert,
+  SubscriptionAlert,
+} from './alert.js';
+import {
   Appointment,
   MutationAppointment,
   QueryAppointment,
@@ -11,23 +17,20 @@ export const resolvers = {
     ...QueryUser,
     ...QueryMotorcycle,
     ...QueryAppointment,
+    ...QueryAlert,
   },
 
   Mutation: {
     ...MutationAppointment,
+    ...MutationAlert,
   },
 
   User,
   Motorcycle,
   Appointment,
+  Alert,
 
-  // User: {
-  //   motorcycle: () => ({
-  //     id: '7yWazK89iJ',
-  //     model: 'name',
-  //     color: 'phone',
-  //     plate: 'phone',
-  //     registration: 'phone',
-  //   }),
-  // },
+  Subscription: {
+    ...SubscriptionAlert,
+  },
 };

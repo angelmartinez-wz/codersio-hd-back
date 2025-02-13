@@ -10,6 +10,8 @@ export const authMiddleware = expressjwt({
   secret,
 });
 
+export const decodeToken = (token) => jwt.verify(token, secret);
+
 export async function handleLogin(req, res) {
   const { email, password } = req.body;
   const user = await getUserByEmail(email);

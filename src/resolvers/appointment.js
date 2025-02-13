@@ -9,6 +9,7 @@ import {
   deleteAppointment,
 } from '../db/appointment.js';
 import { getUser } from '../db/users.js';
+import { getAlertsByAppointmentId } from '../db/alerts.js';
 
 const getError = (id) => `Appointment with ID: ${id}`;
 const validate = (user) => !user && notAuthorizedError();
@@ -80,4 +81,5 @@ export const MutationAppointment = {
 
 export const Appointment = {
   user: (appointment) => getUser(appointment.userId),
+  alerts: (appointment) => getAlertsByAppointmentId(appointment.id),
 };

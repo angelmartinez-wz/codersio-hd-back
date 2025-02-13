@@ -1,0 +1,28 @@
+type Alert {
+  id: ID!
+  appointment: Appointment!
+  alertCode: String!
+  alertDescription: String!
+}
+
+input AlertInput {
+  alertCode: String!
+  alertDescription: String!
+}
+
+input CreateAlertInput {
+  appointmentId: ID!
+  alerts: [AlertInput!]!
+}
+
+extend type Query {
+  alerts: [Alert!]
+}
+
+extend type Mutation {
+  addAlerts(input: CreateAlertInput!): [Alert]
+}
+
+type Subscription {
+  alertAdded: Alert
+}
