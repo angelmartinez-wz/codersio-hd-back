@@ -2,6 +2,7 @@ import { PubSub } from 'graphql-subscriptions';
 import { notAuthorizedError } from '../error/index.js';
 import { createAlert, getAlerts } from '../db/alert.js';
 import { getAppointment } from '../db/appointment.js';
+import { generateRandomErrors } from '../utils/index.js';
 // import { getDiagnosis } from '../utils/index.js';
 
 const pubSub = new PubSub();
@@ -36,6 +37,23 @@ export const MutationAlert = {
     );
 
     return alertMessages;
+  },
+
+  randomAlerts: async (_root, _args, { user }) => {
+    validate(user);
+    const alerts = generateRandomErrors();
+    const updatedAlerts = [];
+    alerts.forEach((alert) => {
+      const message = {
+        alertCode: alert.ErrorCode,
+        alertDescription: alert.Description,
+        alertFault: alert.Fault,
+        severity: alert.SeverityLevel,
+      };
+      updatedAlerts.push(message);
+      pubSub.publish('ALERT_ADDED', { alertAdded: message });
+    });
+    return updatedAlerts;
   },
 };
 

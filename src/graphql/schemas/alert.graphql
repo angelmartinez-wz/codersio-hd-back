@@ -3,6 +3,8 @@ type Alert {
   appointment: Appointment!
   alertCode: String!
   alertDescription: String!
+  alertFault: String
+  severity: String
 }
 
 input AlertInput {
@@ -21,6 +23,7 @@ extend type Query {
 
 extend type Mutation {
   addAlerts(input: CreateAlertInput!): [Alert]
+  randomAlerts: [Alert]
 }
 
 type Subscription {
