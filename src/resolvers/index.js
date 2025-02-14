@@ -9,6 +9,7 @@ import {
   MutationAppointment,
   QueryAppointment,
 } from './appointment.js';
+import { QueryDealership } from './dealership.js';
 import { Motorcycle, QueryMotorcycle } from './motorcycle.js';
 import { QueryUser, User } from './user.js';
 
@@ -18,6 +19,7 @@ export const resolvers = {
     ...QueryMotorcycle,
     ...QueryAppointment,
     ...QueryAlert,
+    ...QueryDealership,
   },
 
   Mutation: {

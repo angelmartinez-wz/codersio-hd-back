@@ -1,0 +1,12 @@
+type Dealership {
+  id: ID!
+  name: String!
+  direction: String!
+  phone: String!
+  image: String!
+  distance: String!
+}
+
+extend type Query {
+  dealerships: [Dealership!]
+}

@@ -101,6 +101,20 @@ query {
 }
 ```
 
+### Get Dealerships
+```gql
+query {
+ dealerships {
+    id
+    name
+    direction
+    phone
+    image
+    distance
+  }
+}
+```
+
 ### Get Appointments
 ```gql
 query {

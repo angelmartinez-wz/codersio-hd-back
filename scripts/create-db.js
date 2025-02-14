@@ -4,10 +4,11 @@ import { connection } from '../src/db/connection.js';
 const { schema } = connection;
 
 async function setupDatabase() {
-  await schema.dropTableIfExists('motorcycle');
-  await schema.dropTableIfExists('user');
-  await schema.dropTableIfExists('appointment');
   await schema.dropTableIfExists('alert');
+  await schema.dropTableIfExists('dealership');
+  await schema.dropTableIfExists('appointment');
+  await schema.dropTableIfExists('user');
+  await schema.dropTableIfExists('motorcycle');
 
   await schema.createTable('motorcycle', (table) => {
     table.text('id').notNullable().primary();
@@ -50,6 +51,15 @@ async function setupDatabase() {
     table.text('alertCode').notNullable();
     table.text('alertDescription').notNullable();
     table.text('createdAt').notNullable();
+  });
+
+  await schema.createTable('dealership', (table) => {
+    table.text('id').notNullable().primary();
+    table.text('name').notNullable();
+    table.text('direction').notNullable();
+    table.text('phone').notNullable();
+    table.text('image').notNullable();
+    table.text('distance').notNullable();
   });
 
   await connection.table('motorcycle').insert([
@@ -123,6 +133,38 @@ async function setupDatabase() {
       alertCode: 'B1900',
       alertDescription: 'Air Bag Circuit Short to Battery',
       createdAt: '2023-01-21T11:00:00.000Z',
+    },
+  ]);
+
+  await connection.table('dealership').insert([
+    {
+      id: 'U5YBHVlLdPDb',
+      name: 'Javelina Harley-Davidson',
+      direction:
+        '29078 Interstate 10 Frontage Rd, Boerne, TX 78006, Estados Unidos',
+      phone: '+18307555202',
+      image:
+        'https://lh5.googleusercontent.com/p/AF1QipPSFgadVhJ_PF40cPuy1FLioCMQpcafpL0VpwAL=w427-h240-k-no',
+      distance: '2.2 mi',
+    },
+    {
+      id: 'CbtZ8fLywLl3',
+      name: "Teddy Morse's Cowboy Harley",
+      direction:
+        '11005 I-35 Frontage Rd, San Antonio, TX 78233, Estados Unidos',
+      phone: '+12106460499',
+      image:
+        'https://lh5.googleusercontent.com/p/AF1QipOdfKbGy5rxpbevcuj0xtmzERT1WAEP6H2QrShl=w408-h270-k-no',
+      distance: '8.9 mi',
+    },
+    {
+      id: 'lI0CosZ65gHP',
+      name: 'Gruene Harley-Davidson',
+      direction: '1288 TX-337 Loop, New Braunfels, TX 78130, Estados Unidos',
+      phone: '+18306242473',
+      image:
+        'https://lh5.googleusercontent.com/p/AF1QipMRjDDUf-8mRpHV1j8YBfeVxkMaKGBdeT8mjed7=w426-h240-k-no',
+      distance: '5.7 mi',
     },
   ]);
 

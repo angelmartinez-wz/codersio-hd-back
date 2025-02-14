@@ -9,7 +9,7 @@ import {
   deleteAppointment,
 } from '../db/appointment.js';
 import { getUser } from '../db/users.js';
-import { getAlertsByAppointmentId } from '../db/alerts.js';
+import { getAlertsByAppointmentId } from '../db/alert.js';
 
 const getError = (id) => `Appointment with ID: ${id}`;
 const validate = (user) => !user && notAuthorizedError();

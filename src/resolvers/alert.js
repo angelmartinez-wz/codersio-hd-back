@@ -1,6 +1,6 @@
 import { PubSub } from 'graphql-subscriptions';
 import { notAuthorizedError } from '../error/index.js';
-import { createAlert, getAlerts } from '../db/alerts.js';
+import { createAlert, getAlerts } from '../db/alert.js';
 import { getAppointment } from '../db/appointment.js';
 // import { getDiagnosis } from '../utils/index.js';
 
