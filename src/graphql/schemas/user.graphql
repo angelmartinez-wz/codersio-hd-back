@@ -6,6 +6,7 @@ type User {
   password: String!
   membership: String!
   motorcycle: Motorcycle!
+  appointments: [Appointment]
 }
 
 extend type Query {

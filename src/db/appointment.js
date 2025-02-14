@@ -11,6 +11,10 @@ export async function getAppointment(id) {
   return getAppointmentTable().first().where({ id });
 }
 
+export async function getAppointmentsByUserId(userId) {
+  return getAppointmentTable().select().where({ userId });
+}
+
 export async function createAppointment({ userId, diagnosis, date, time }) {
   const appointment = {
     id: generateId(),

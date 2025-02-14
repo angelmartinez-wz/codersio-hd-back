@@ -66,6 +66,13 @@ query {
       plate
       registration
     }
+    appointments {
+      id
+      diagnosis
+      date
+      time
+      status
+    }
   }
 }
 ```
@@ -86,6 +93,9 @@ query {
       phone
       password
       membership
+    }
+    appointments {
+      id
     }
   }
 }

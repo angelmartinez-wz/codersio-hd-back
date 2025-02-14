@@ -2,14 +2,18 @@ import { PubSub } from 'graphql-subscriptions';
 import { notAuthorizedError } from '../error/index.js';
 import { createAlert, getAlerts } from '../db/alerts.js';
 import { getAppointment } from '../db/appointment.js';
+// import { getDiagnosis } from '../utils/index.js';
 
 const pubSub = new PubSub();
 const validate = (user) => !user && notAuthorizedError();
 
 export const QueryAlert = {
-  alerts: (_root, _args, { user }) => {
+  alerts: async (_root, _args, { user }) => {
     validate(user);
-    return getAlerts();
+    const alerts = await getAlerts();
+    // const description = await getDiagnosis(alerts);
+    // console.log(description);
+    return alerts;
   },
 };
 

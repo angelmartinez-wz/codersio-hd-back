@@ -9,9 +9,9 @@ import { authMiddleware, handleLogin, decodeToken } from './auth.js';
 import schema from './src/graphql/index.js';
 import { getUser } from './src/db/users.js';
 import { getMotorcycle } from './src/db/motorcycles.js';
+import { config } from './src/config/index.js';
 
 const startService = async () => {
-  const PORT = 9000;
   const app = express();
 
   const getHttpContext = async ({ req }) => {
@@ -56,8 +56,8 @@ const startService = async () => {
     }),
   );
 
-  httpServer.listen({ port: PORT }, () => {
-    console.log(`Server running on port ${PORT}`);
+  httpServer.listen({ port: config.PORT }, () => {
+    console.log(`Server running on port ${config.PORT}`);
   });
 };
 
