@@ -369,3 +369,15 @@ subscription {
   }
 }
 ```
+
+### Random Alerts
+```gql
+mutation {
+  randomAlerts {
+    alertCode
+    alertDescription
+    alertFault
+    severity
+  }
+}
+```
