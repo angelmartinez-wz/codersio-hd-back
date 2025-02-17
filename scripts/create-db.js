@@ -140,8 +140,7 @@ async function setupDatabase() {
     {
       id: 'U5YBHVlLdPDb',
       name: 'Javelina Harley-Davidson',
-      direction:
-        '29078 Interstate 10 Frontage Rd, Boerne, TX 78006, Estados Unidos',
+      direction: '29078 Interstate 10 Frontage Rd, Boerne, TX 78006, USA',
       phone: '+18307555202',
       image:
         'https://lh5.googleusercontent.com/p/AF1QipPSFgadVhJ_PF40cPuy1FLioCMQpcafpL0VpwAL=w427-h240-k-no',
@@ -150,8 +149,7 @@ async function setupDatabase() {
     {
       id: 'CbtZ8fLywLl3',
       name: "Teddy Morse's Cowboy Harley",
-      direction:
-        '11005 I-35 Frontage Rd, San Antonio, TX 78233, Estados Unidos',
+      direction: '11005 I-35 Frontage Rd, San Antonio, TX 78233, USA',
       phone: '+12106460499',
       image:
         'https://lh5.googleusercontent.com/p/AF1QipOdfKbGy5rxpbevcuj0xtmzERT1WAEP6H2QrShl=w408-h270-k-no',
@@ -160,7 +158,7 @@ async function setupDatabase() {
     {
       id: 'lI0CosZ65gHP',
       name: 'Gruene Harley-Davidson',
-      direction: '1288 TX-337 Loop, New Braunfels, TX 78130, Estados Unidos',
+      direction: '1288 TX-337 Loop, New Braunfels, TX 78130, USA',
       phone: '+18306242473',
       image:
         'https://lh5.googleusercontent.com/p/AF1QipMRjDDUf-8mRpHV1j8YBfeVxkMaKGBdeT8mjed7=w426-h240-k-no',
