@@ -45,7 +45,7 @@ export const getDiagnosis = (alerts) => {
   return fetchChatGPT(content);
 };
 
-export const generateRandomErrors = (n = 5) => {
+export const generateRandomErrors = (n = 3) => {
   const copyArr = [...errors];
   const result = [];
   const maxItems = Math.min(n, copyArr.length);
