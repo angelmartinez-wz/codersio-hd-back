@@ -15,3 +15,5 @@ export const notAuthorizedError = (message = 'Unauthorized User') => {
     },
   });
 };
+
+export const validate = (user) => !user && notAuthorizedError();

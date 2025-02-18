@@ -77,6 +77,41 @@ query {
 }
 ```
 
+### Get User
+```gql
+query {
+  user {
+    id
+    email
+    name
+    password
+    phone
+    membership
+    motorcycle {
+      id
+      model
+      color
+      plate
+      registration
+    }
+    appointments {
+      id
+      diagnosis
+      date
+      time
+      status
+    }
+  }
+}
+```
+
+```gql
+# Variables
+{
+  "userId": "AcMJpL7b413Z"
+}
+```
+
 ### Get Motorcycles
 ```gql
 query {

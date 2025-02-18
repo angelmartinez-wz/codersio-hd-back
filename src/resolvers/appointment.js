@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable arrow-body-style */
-import { notAuthorizedError, notFoundError } from '../error/index.js';
+import { notFoundError, validate } from '../error/index.js';
 import {
   getAppointment,
   getAppointments,
@@ -12,7 +12,6 @@ import { getUser } from '../db/users.js';
 import { getAlertsByAppointmentId } from '../db/alert.js';
 
 const getError = (id) => `Appointment with ID: ${id}`;
-const validate = (user) => !user && notAuthorizedError();
 
 export const QueryAppointment = {
   appointments: (_root, _args, { user }) => {
