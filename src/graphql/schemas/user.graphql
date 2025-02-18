@@ -7,9 +7,11 @@ type User {
   membership: String!
   motorcycle: Motorcycle!
   appointments: [Appointment]
+  dealership: Dealership
 }
 
 extend type Query {
   users: [User!]
-  user(id: ID!): User
+  user: User
+  userByEmail: User
 }

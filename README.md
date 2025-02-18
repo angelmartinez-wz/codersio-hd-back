@@ -73,6 +73,14 @@ query {
       time
       status
     }
+    dealership {
+      id
+      name
+      direction
+      phone
+      image
+      distance
+    }
   }
 }
 ```
@@ -101,14 +109,51 @@ query {
       time
       status
     }
+    dealership {
+      id
+      name
+      direction
+      phone
+      image
+      distance
+    }
   }
 }
 ```
 
+### Get User By Email
 ```gql
-# Variables
-{
-  "userId": "AcMJpL7b413Z"
+query {
+  userByEmail {
+    id
+    email
+    name
+    password
+    phone
+    membership
+    motorcycle {
+      id
+      model
+      color
+      plate
+      registration
+    }
+    appointments {
+      id
+      diagnosis
+      date
+      time
+      status
+    }
+    dealership {
+      id
+      name
+      direction
+      phone
+      image
+      distance
+    }
+  }
 }
 ```
 

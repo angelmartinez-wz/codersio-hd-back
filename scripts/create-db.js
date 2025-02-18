@@ -5,10 +5,10 @@ const { schema } = connection;
 
 async function setupDatabase() {
   await schema.dropTableIfExists('alert');
-  await schema.dropTableIfExists('dealership');
   await schema.dropTableIfExists('appointment');
-  await schema.dropTableIfExists('user');
+  await schema.dropTableIfExists('dealership');
   await schema.dropTableIfExists('motorcycle');
+  await schema.dropTableIfExists('user');
 
   await schema.createTable('motorcycle', (table) => {
     table.text('id').notNullable().primary();
@@ -16,6 +16,16 @@ async function setupDatabase() {
     table.text('color').notNullable();
     table.text('plate').notNullable();
     table.text('registration').notNullable();
+    table.text('image').notNullable();
+  });
+
+  await schema.createTable('dealership', (table) => {
+    table.text('id').notNullable().primary();
+    table.text('name').notNullable();
+    table.text('direction').notNullable();
+    table.text('phone').notNullable();
+    table.text('image').notNullable();
+    table.text('distance').notNullable();
   });
 
   await schema.createTable('user', (table) => {
@@ -30,6 +40,11 @@ async function setupDatabase() {
       .notNullable()
       .references('id')
       .inTable('motorcycle');
+    table
+      .text('dealershipId')
+      .notNullable()
+      .references('id')
+      .inTable('dealership');
   });
 
   await schema.createTable('appointment', (table) => {
@@ -53,15 +68,6 @@ async function setupDatabase() {
     table.text('createdAt').notNullable();
   });
 
-  await schema.createTable('dealership', (table) => {
-    table.text('id').notNullable().primary();
-    table.text('name').notNullable();
-    table.text('direction').notNullable();
-    table.text('phone').notNullable();
-    table.text('image').notNullable();
-    table.text('distance').notNullable();
-  });
-
   await connection.table('motorcycle').insert([
     {
       id: 'LFcExWtbWDbL',
@@ -69,13 +75,47 @@ async function setupDatabase() {
       color: 'Black',
       plate: 'NY-764M2C',
       registration: 'NY, NY',
+      image:
+        'https://www.harley-davidson.com/content/dam/h-d/images/product-images/bikes/motorcycle/2025/2025-road-king-special/2025-road-king-special-m04b/360/2025-road-king-special-m04b-motorcycle-01.jpg',
     },
     {
       id: 'sa4V2DqJBPvn',
       model: 'CVO Road Glide ST',
-      color: 'Black',
+      color: 'Green',
       plate: 'CA-82X6HP',
       registration: 'Los Angeles, California',
+      image:
+        'https://d2bywgumb0o70j.cloudfront.net/2022/01/27/2e20af57d0a9930ce3ed3b3d95ff3582_8c8bb363e7ce3a44.jpg',
+    },
+  ]);
+
+  await connection.table('dealership').insert([
+    {
+      id: 'U5YBHVlLdPDb',
+      name: 'Javelina Harley-Davidson',
+      direction: '29078 Interstate 10 Frontage Rd, Boerne, TX 78006, USA',
+      phone: '+18307555202',
+      image:
+        'https://lh5.googleusercontent.com/p/AF1QipPSFgadVhJ_PF40cPuy1FLioCMQpcafpL0VpwAL=w427-h240-k-no',
+      distance: '2.2 mi',
+    },
+    {
+      id: 'CbtZ8fLywLl3',
+      name: "Teddy Morse's Cowboy Harley",
+      direction: '11005 I-35 Frontage Rd, San Antonio, TX 78233, USA',
+      phone: '+12106460499',
+      image:
+        'https://lh5.googleusercontent.com/p/AF1QipOdfKbGy5rxpbevcuj0xtmzERT1WAEP6H2QrShl=w408-h270-k-no',
+      distance: '8.9 mi',
+    },
+    {
+      id: 'lI0CosZ65gHP',
+      name: 'Gruene Harley-Davidson',
+      direction: '1288 TX-337 Loop, New Braunfels, TX 78130, USA',
+      phone: '+18306242473',
+      image:
+        'https://lh5.googleusercontent.com/p/AF1QipMRjDDUf-8mRpHV1j8YBfeVxkMaKGBdeT8mjed7=w426-h240-k-no',
+      distance: '5.7 mi',
     },
   ]);
 
@@ -88,6 +128,7 @@ async function setupDatabase() {
       password: 'angel123',
       membership: 'HD-2025-001',
       motorcycleId: 'LFcExWtbWDbL',
+      dealershipId: 'U5YBHVlLdPDb',
     },
     {
       id: 'BvBNW636Z89L',
@@ -97,6 +138,7 @@ async function setupDatabase() {
       password: 'mitzi123',
       membership: 'HD-2025-002',
       motorcycleId: 'sa4V2DqJBPvn',
+      dealershipId: 'lI0CosZ65gHP',
     },
   ]);
 
@@ -133,36 +175,6 @@ async function setupDatabase() {
       alertCode: 'B1900',
       alertDescription: 'Air Bag Circuit Short to Battery',
       createdAt: '2023-01-21T11:00:00.000Z',
-    },
-  ]);
-
-  await connection.table('dealership').insert([
-    {
-      id: 'U5YBHVlLdPDb',
-      name: 'Javelina Harley-Davidson',
-      direction: '29078 Interstate 10 Frontage Rd, Boerne, TX 78006, USA',
-      phone: '+18307555202',
-      image:
-        'https://lh5.googleusercontent.com/p/AF1QipPSFgadVhJ_PF40cPuy1FLioCMQpcafpL0VpwAL=w427-h240-k-no',
-      distance: '2.2 mi',
-    },
-    {
-      id: 'CbtZ8fLywLl3',
-      name: "Teddy Morse's Cowboy Harley",
-      direction: '11005 I-35 Frontage Rd, San Antonio, TX 78233, USA',
-      phone: '+12106460499',
-      image:
-        'https://lh5.googleusercontent.com/p/AF1QipOdfKbGy5rxpbevcuj0xtmzERT1WAEP6H2QrShl=w408-h270-k-no',
-      distance: '8.9 mi',
-    },
-    {
-      id: 'lI0CosZ65gHP',
-      name: 'Gruene Harley-Davidson',
-      direction: '1288 TX-337 Loop, New Braunfels, TX 78130, USA',
-      phone: '+18306242473',
-      image:
-        'https://lh5.googleusercontent.com/p/AF1QipMRjDDUf-8mRpHV1j8YBfeVxkMaKGBdeT8mjed7=w426-h240-k-no',
-      distance: '5.7 mi',
     },
   ]);
 
