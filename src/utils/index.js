@@ -3,7 +3,10 @@ import { config } from '../config/index.js';
 import { alertErrors } from '../config/errors.js';
 
 export const getErrorMessage = (errors) => {
-  const description = errors.map((error) => `${errors.code} - ${error.fault}`);
+  console.log('ERRRORRSR', errors);
+  const description = errors.map(
+    (error) => `${error.severity} - ${error.code} - ${error.fault}`,
+  );
   return description.join(', ');
 };
 
@@ -39,7 +42,7 @@ const fetchChatGPT = async (content) => {
 
 export const getDiagnosis = (errors) => {
   const description = getErrorMessage(errors);
-  const content = `Summarize the following errors for a non technical user, ${description} in a brief way`;
+  const content = `Analyze the following errors of the motorcycle and the severity, give a general diagnosis in less than or 50 words: ${description}`;
   return fetchChatGPT(content);
 };
 

@@ -1,13 +1,16 @@
+/* eslint-disable no-param-reassign */
 import { PubSub } from 'graphql-subscriptions';
 import {
   createError,
   deleteErrorsByAppointmentId,
   getErrors,
+  getErrorsByAppointmentId,
 } from '../db/error.js';
 import {
   createAppointment,
   getAppointment,
   getAppointmentByUserId,
+  updateAppointment,
 } from '../db/appointment.js';
 import { generateRandomErrors, getDiagnosis } from '../utils/index.js';
 import { validate } from '../error/index.js';
@@ -17,10 +20,7 @@ const pubSub = new PubSub();
 export const QueryError = {
   errors: async (_root, _args, { user }) => {
     validate(user);
-    const errors = await getErrors();
-    const description = await getDiagnosis(errors);
-    console.log(description);
-    return errors;
+    return getErrors();
   },
 };
 
@@ -28,13 +28,25 @@ export const MutationError = {
   randomErrors: async (_root, _args, { user }) => {
     validate(user);
 
-    const { id } = user;
+    const { id: userId } = user;
 
-    let appointment = await getAppointmentByUserId(id);
+    let appointment = await getAppointmentByUserId(userId);
 
     if (!appointment) {
-      appointment = await createAppointment({ userId: id });
+      appointment = await createAppointment({ userId });
     }
+
+    const { id } = appointment;
+    let appointmentErrors = await getErrorsByAppointmentId(id);
+    appointmentErrors = appointmentErrors?.map(
+      // eslint-disable-next-line array-callback-return
+      (error) => {
+        delete error?.id;
+        delete error?.createdAt;
+        delete error?.appointmentId;
+        return error;
+      },
+    );
 
     const randomErrors = generateRandomErrors();
     const errors = [];
@@ -49,7 +61,7 @@ export const MutationError = {
 
         await createError({
           ...error,
-          appointmentId: appointment.id,
+          appointmentId: id,
         });
 
         errors.push(error);
@@ -57,6 +69,11 @@ export const MutationError = {
         pubSub.publish('ERROR_ADDED', { errorAdded: error });
       }),
     );
+
+    const diagnosis = await getDiagnosis([...errors, ...appointmentErrors]);
+    console.log('LALALA', diagnosis);
+
+    await updateAppointment({ id, userId, diagnosis });
 
     return errors;
   },

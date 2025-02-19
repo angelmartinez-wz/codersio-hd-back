@@ -390,3 +390,10 @@ mutation {
   }
 }
 ```
+
+### Delete Errors
+```gql
+mutation {
+  deleteErrors
+}
+```
