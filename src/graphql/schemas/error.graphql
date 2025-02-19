@@ -1,0 +1,20 @@
+type Error {
+  id: ID!
+  code: String!
+  fault: String!
+  severity: String!
+  appointment: Appointment!
+}
+
+extend type Query {
+  errors: [Error!]
+}
+
+extend type Mutation {
+  randomErrors: [Error]
+  deleteErrors: Boolean
+}
+
+type Subscription {
+  errorAdded: Error
+}

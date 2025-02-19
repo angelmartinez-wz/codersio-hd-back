@@ -5,7 +5,7 @@ type Appointment {
   time: String!
   status: String!
   user: User!
-  alerts: [Alert!]
+  errors: [Error!]
 }
 
 input CreateAppointmentInput {

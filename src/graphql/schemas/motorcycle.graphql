@@ -4,10 +4,10 @@ type Motorcycle {
   color: String!
   plate: String!
   registration: String!
+  image: String!
   user: User!
 }
 
 extend type Query {
   motorcycles: [Motorcycle]
-  motorcycle(id: ID!): Motorcycle
 }

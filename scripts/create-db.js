@@ -4,11 +4,11 @@ import { connection } from '../src/db/connection.js';
 const { schema } = connection;
 
 async function setupDatabase() {
-  await schema.dropTableIfExists('alert');
+  await schema.dropTableIfExists('error');
   await schema.dropTableIfExists('appointment');
+  await schema.dropTableIfExists('user');
   await schema.dropTableIfExists('dealership');
   await schema.dropTableIfExists('motorcycle');
-  await schema.dropTableIfExists('user');
 
   await schema.createTable('motorcycle', (table) => {
     table.text('id').notNullable().primary();
@@ -56,16 +56,17 @@ async function setupDatabase() {
     table.enu('status', ['Pending', 'Completed']).notNullable();
   });
 
-  await schema.createTable('alert', (table) => {
+  await schema.createTable('error', (table) => {
     table.text('id').notNullable().primary();
+    table.text('code').notNullable();
+    table.text('fault').notNullable();
+    table.text('severity').notNullable();
+    table.text('createdAt').notNullable();
     table
       .text('appointmentId')
       .notNullable()
       .references('id')
       .inTable('appointment');
-    table.text('alertCode').notNullable();
-    table.text('alertDescription').notNullable();
-    table.text('createdAt').notNullable();
   });
 
   await connection.table('motorcycle').insert([
@@ -146,7 +147,7 @@ async function setupDatabase() {
     {
       id: 'f3YzmnBZpK0o',
       userId: 'AcMJpL7b413Z',
-      diagnosis: 'Air Bag',
+      diagnosis: '',
       date: '2025-01-26',
       time: '13:45 PM',
       status: 'Pending',
@@ -154,27 +155,10 @@ async function setupDatabase() {
     {
       id: 'GSwvGr28YZGU',
       userId: 'BvBNW636Z89L',
-      diagnosis: 'Motor',
+      diagnosis: '',
       date: '2025-01-26',
       time: '11:20 AM',
       status: 'Pending',
-    },
-  ]);
-
-  await connection.table('alert').insert([
-    {
-      id: 'f49JzmL0nVcz',
-      appointmentId: 'f3YzmnBZpK0o',
-      alertCode: 'P0300',
-      alertDescription: 'Random/Multiple Cylinder Misfire Detected',
-      createdAt: '2023-01-31T11:00:00.000Z',
-    },
-    {
-      id: 'f50JzmL0nVKl',
-      appointmentId: 'f3YzmnBZpK0o',
-      alertCode: 'B1900',
-      alertDescription: 'Air Bag Circuit Short to Battery',
-      createdAt: '2023-01-21T11:00:00.000Z',
     },
   ]);
 

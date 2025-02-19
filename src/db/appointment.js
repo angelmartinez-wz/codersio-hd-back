@@ -15,13 +15,14 @@ export async function getAppointmentsByUserId(userId) {
   return getAppointmentTable().select().where({ userId });
 }
 
-export async function createAppointment({ userId, diagnosis, date, time }) {
+export async function getAppointmentByUserId(userId) {
+  return getAppointmentTable().select().where({ userId }).first();
+}
+
+export async function createAppointment({ userId }) {
   const appointment = {
     id: generateId(),
     userId,
-    diagnosis,
-    date,
-    time,
     status: 'Pending',
   };
   await getAppointmentTable().insert(appointment);

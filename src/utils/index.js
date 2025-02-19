@@ -1,11 +1,9 @@
 import axios from 'axios';
 import { config } from '../config/index.js';
-import { errors } from '../config/errors.js';
+import { alertErrors } from '../config/errors.js';
 
-export const getAlertsMessage = (alerts) => {
-  const description = alerts.map(
-    (alert) => `${alert.alertCode} - ${alert.alertDescription}`,
-  );
+export const getErrorMessage = (errors) => {
+  const description = errors.map((error) => `${errors.code} - ${error.fault}`);
   return description.join(', ');
 };
 
@@ -39,14 +37,14 @@ const fetchChatGPT = async (content) => {
   }
 };
 
-export const getDiagnosis = (alerts) => {
-  const description = getAlertsMessage(alerts);
+export const getDiagnosis = (errors) => {
+  const description = getErrorMessage(errors);
   const content = `Summarize the following errors for a non technical user, ${description} in a brief way`;
   return fetchChatGPT(content);
 };
 
 export const generateRandomErrors = (n = 3) => {
-  const copyArr = [...errors];
+  const copyArr = [...alertErrors];
   const result = [];
   const maxItems = Math.min(n, copyArr.length);
   // eslint-disable-next-line no-plusplus

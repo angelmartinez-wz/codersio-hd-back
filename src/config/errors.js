@@ -1,132 +1,132 @@
-export const errors = [
+export const alertErrors = [
   {
-    ErrorCode: 'P0300',
-    Fault: 'Random/Multiple Cylinder Misfire Detected',
-    Description:
+    code: 'P0300',
+    fault: 'Random/Multiple Cylinder Misfire Detected',
+    description:
       'The engine is not burning fuel in one or more cylinders, causing loss of power and vibrations.',
-    SeverityLevel: 'High',
+    severity: 'High',
   },
   {
-    ErrorCode: 'P0335',
-    Fault: 'Crankshaft Position Sensor Circuit Malfunction',
-    Description:
+    code: 'P0335',
+    fault: 'Crankshaft Position Sensor Circuit Malfunction',
+    description:
       'Incorrect information about the crankshaft position, affecting ignition timing and fuel injection.',
-    SeverityLevel: 'High',
+    severity: 'High',
   },
   {
-    ErrorCode: 'C0200',
-    Fault: 'Anti-lock Brake System (ABS) Malfunction',
-    Description:
+    code: 'C0200',
+    fault: 'Anti-lock Brake System (ABS) Malfunction',
+    description:
       'The ABS is not working correctly, compromising safety in emergency braking.',
-    SeverityLevel: 'High',
+    severity: 'High',
   },
   {
-    ErrorCode: 'P0301',
-    Fault: 'Cylinder 1 Misfire Detected',
-    Description:
+    code: 'P0301',
+    fault: 'Cylinder 1 Misfire Detected',
+    description:
       'Misfire in cylinder 1, causing loss of power and potential engine damage.',
-    SeverityLevel: 'High',
+    severity: 'High',
   },
   {
-    ErrorCode: 'B1900',
-    Fault: 'Air Bag Circuit Short to Battery',
-    Description:
+    code: 'B1900',
+    fault: 'Air Bag Circuit Short to Battery',
+    description:
       'Short circuit in the airbag system, potentially causing accidental deployment.',
-    SeverityLevel: 'High',
+    severity: 'High',
   },
   {
-    ErrorCode: 'U0100',
-    Fault: 'Lost Communication with ECM/PCM',
-    Description:
+    code: 'U0100',
+    fault: 'Lost Communication with ECM/PCM',
+    description:
       'Communication error with the engine control module, potentially causing various engine problems.',
-    SeverityLevel: 'High',
+    severity: 'High',
   },
   {
-    ErrorCode: 'P0442',
-    Fault: 'Small Evaporative Leak Detected',
-    Description: 'A small leak in the evaporative emissions control system.',
-    SeverityLevel: 'Low',
+    code: 'P0442',
+    fault: 'Small Evaporative Leak Detected',
+    description: 'A small leak in the evaporative emissions control system.',
+    severity: 'Low',
   },
   {
-    ErrorCode: 'P0446',
-    Fault: 'Evaporative Emission System Vent Control Circuit Malfunction',
-    Description:
+    code: 'P0446',
+    fault: 'Evaporative Emission System Vent Control Circuit Malfunction',
+    description:
       'Problem with the vent control circuit of the evaporative emissions system.',
-    SeverityLevel: 'Low',
+    severity: 'Low',
   },
   {
-    ErrorCode: 'P0455',
-    Fault: 'Large Evaporative Leak Detected',
-    Description: 'Large leak in the evaporative emissions control system.',
-    SeverityLevel: 'Low',
+    code: 'P0455',
+    fault: 'Large Evaporative Leak Detected',
+    description: 'Large leak in the evaporative emissions control system.',
+    severity: 'Low',
   },
   {
-    ErrorCode: 'P0705',
-    Fault: 'Transmission Range Sensor Circuit Malfunction',
-    Description:
+    code: 'P0705',
+    fault: 'Transmission Range Sensor Circuit Malfunction',
+    description:
       'Problem with the sensor that indicates the gear the transmission is in. (If applicable to the motorcycle)',
-    SeverityLevel: 'Low',
+    severity: 'Low',
   },
   {
-    ErrorCode: 'P0110',
-    Fault: 'Intake Air Temperature Sensor Circuit Malfunction',
-    Description:
+    code: 'P0110',
+    fault: 'Intake Air Temperature Sensor Circuit Malfunction',
+    description:
       'Incorrect readings from the intake air temperature sensor, and the air/fuel mixture.',
-    SeverityLevel: 'Low',
+    severity: 'Low',
   },
   {
-    ErrorCode: 'B1000',
-    Fault: 'Instrument Panel Warning Lamp Circuit Malfunction',
-    Description:
+    code: 'B1000',
+    fault: 'Instrument Panel Warning Lamp Circuit Malfunction',
+    description:
       'Problem with the circuit for one of the warning lamps on the instrument panel.',
-    SeverityLevel: 'Low',
+    severity: 'Low',
   },
   {
-    ErrorCode: 'P0130',
-    Fault: 'The Oxygen Sensor Circuit Malfunction',
-    Description:
+    code: 'P0130',
+    fault: 'The Oxygen Sensor Circuit Malfunction',
+    description:
       'Incorrect readings of the air/fuel mixture, affecting performance and emissions.',
-    SeverityLevel: 'Medium',
+    severity: 'Medium',
   },
   {
-    ErrorCode: 'P0505',
-    Fault: 'Idle Air Control Valve (IAC) Malfunction',
-    Description: 'Difficulty maintaining engine idle may cause stalling.',
-    SeverityLevel: 'Medium',
+    code: 'P0505',
+    fault: 'Idle Air Control Valve (IAC) Malfunction',
+    description: 'Difficulty maintaining engine idle may cause stalling.',
+    severity: 'Medium',
   },
   {
-    ErrorCode: 'P0115',
-    Fault: 'Engine Coolant Temperature Sensor Circuit Malfunction',
-    Description:
+    code: 'P0115',
+    fault: 'Engine Coolant Temperature Sensor Circuit Malfunction',
+    description:
       'Incorrect engine temperature readings, affecting the air/fuel mixture and overheating protection.',
-    SeverityLevel: 'Medium',
+    severity: 'Medium',
   },
   {
-    ErrorCode: 'P0171',
-    Fault: 'System Too Lean (Bank 1)',
-    Description:
+    code: 'P0171',
+    fault: 'System Too Lean (Bank 1)',
+    description:
       'The air/fuel mixture is too lean, potentially causing engine damage.',
-    SeverityLevel: 'Medium',
+    severity: 'Medium',
   },
   {
-    ErrorCode: 'P0172',
-    Fault: 'System Too Rich (Bank 1)',
-    Description:
+    code: 'P0172',
+    fault: 'System Too Rich (Bank 1)',
+    description:
       'The air/fuel mixture is too rich, potentially causing engine damage and increased emissions.',
-    SeverityLevel: 'Medium',
+    severity: 'Medium',
   },
   {
-    ErrorCode: 'P0420',
-    Fault: 'Catalyst System Efficiency Below Threshold (Bank 1)',
-    Description:
+    code: 'P0420',
+    fault: 'Catalyst System Efficiency Below Threshold (Bank 1)',
+    description:
       'The catalytic converter is not working efficiently, increasing emissions.',
-    SeverityLevel: 'Medium',
+    severity: 'Medium',
   },
   {
-    ErrorCode: 'P0562',
-    Fault: 'System Voltage Low',
-    Description:
+    code: 'P0562',
+    fault: 'System Voltage Low',
+    description:
       'The charging system is not providing enough voltage, potentially causing electrical problems.',
-    SeverityLevel: 'Medium',
+    severity: 'Medium',
   },
 ];

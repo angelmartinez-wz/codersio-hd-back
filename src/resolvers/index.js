@@ -1,9 +1,9 @@
 import {
-  Alert,
-  MutationAlert,
-  QueryAlert,
-  SubscriptionAlert,
-} from './alert.js';
+  Error,
+  MutationError,
+  QueryError,
+  SubscriptionError,
+} from './error.js';
 import {
   Appointment,
   MutationAppointment,
@@ -18,21 +18,21 @@ export const resolvers = {
     ...QueryUser,
     ...QueryMotorcycle,
     ...QueryAppointment,
-    ...QueryAlert,
+    ...QueryError,
     ...QueryDealership,
   },
 
   Mutation: {
     ...MutationAppointment,
-    ...MutationAlert,
+    ...MutationError,
   },
 
   User,
   Motorcycle,
   Appointment,
-  Alert,
+  Error,
 
   Subscription: {
-    ...SubscriptionAlert,
+    ...SubscriptionError,
   },
 };

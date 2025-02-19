@@ -65,6 +65,7 @@ query {
       color
       plate
       registration
+      image
     }
     appointments {
       id
@@ -72,6 +73,12 @@ query {
       date
       time
       status
+      errors {
+        id
+        code
+        fault
+        severity
+      }
     }
     dealership {
       id
@@ -101,6 +108,7 @@ query {
       color
       plate
       registration
+      image
     }
     appointments {
       id
@@ -108,6 +116,12 @@ query {
       date
       time
       status
+      errors {
+        id
+        code
+        fault
+        severity
+      }
     }
     dealership {
       id
@@ -137,6 +151,7 @@ query {
       color
       plate
       registration
+      image
     }
     appointments {
       id
@@ -144,6 +159,12 @@ query {
       date
       time
       status
+      errors {
+        id
+        code
+        fault
+        severity
+      }
     }
     dealership {
       id
@@ -151,31 +172,8 @@ query {
       direction
       phone
       image
-      distance
-    }
-  }
-}
-```
 
-### Get Motorcycles
-```gql
-query {
-  motorcycles {
-    id
-    color
-    model
-    plate
-    registration
-    user {
-      id
-      name
-      email
-      phone
-      password
-      membership
-    }
-    appointments {
-      id
+      distance
     }
   }
 }
@@ -204,10 +202,11 @@ query {
     time
     status
     diagnosis
-    alerts {
+    errors {
       id
-      alertCode
-      alertDescription
+      code
+      fault
+      severity
     }
     user {
       id
@@ -221,6 +220,7 @@ query {
         color
         plate
         registration
+        image
       }
     }
   }
@@ -236,6 +236,12 @@ query($appointmentId: ID!) {
     time
     status
     diagnosis
+    errors {
+      id
+      code
+      fault
+      severity
+    }
     user {
       id
       phone
@@ -248,6 +254,7 @@ query($appointmentId: ID!) {
         color
         plate
         registration
+        image
       }
     }
   }
@@ -277,7 +284,7 @@ mutation($input: CreateAppointmentInput!) {
      motorcycle {
       id
       color
-      plate      
+      plate
      } 
     }
   }
@@ -362,101 +369,23 @@ mutation($input: DeleteAppointmentInput!) {
 }
 ```
 
-### Get Alerts
-```gql
-query {
-  alerts {
-    id
-    alertCode
-    alertDescription
-    appointment {
-      id
-      diagnosis
-      date
-      time
-      user {
-        id
-        name
-        motorcycle {
-          id
-          model
-          plate
-        }
-      }
-    }
-  }
-}
-```
-
-### Add Alerts
-```gql
-query {
-  alerts {
-    id
-    alertCode
-    alertDescription
-    appointment {
-      id
-      diagnosis
-      date
-      time
-      user {
-        id
-        name
-        motorcycle {
-          id
-          model
-          plate
-        }
-      }
-    }
-  }
-}
-```
-
-```gql
-# Variables
-{
-  "input": {
-    "appointmentId": "f3YzmnBZpK0o",
-    "alerts": [
-      {
-        "alertCode": "P0420",
-        "alertDescription": "Idle Air Control Valve (IAC) Malfunction"
-      },
-      {
-        "alertCode": "P0115",
-        "alertDescription": "Engine Coolant Temperature Sensor Circuit Malfunction"
-      }
-    ]
-  }
-}
-```
-
-### Subscription Alerts
+### Subscription Errors
 ```gql
 subscription {
-  alertAdded {
-    id
-    alertCode
-    alertDescription
-    appointment {
-      id
-      user {
-        email
-      }
-    }
+  errorAdded {
+    code
+    fault
+    severity
   }
 }
 ```
 
-### Random Alerts
+### Random Errors
 ```gql
 mutation {
-  randomAlerts {
-    alertCode
-    alertDescription
-    alertFault
+  randomErrors {
+    code
+    fault
     severity
   }
 }
