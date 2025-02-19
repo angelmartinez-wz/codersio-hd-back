@@ -71,7 +71,7 @@ export const MutationError = {
     );
 
     const diagnosis = await getDiagnosis([...errors, ...appointmentErrors]);
-    console.log('LALALA', diagnosis);
+    console.log('[DIAGNOSIS]', diagnosis);
 
     await updateAppointment({ id, userId, diagnosis });
 

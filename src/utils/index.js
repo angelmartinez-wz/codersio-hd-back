@@ -3,7 +3,6 @@ import { config } from '../config/index.js';
 import { alertErrors } from '../config/errors.js';
 
 export const getErrorMessage = (errors) => {
-  console.log('ERRRORRSR', errors);
   const description = errors.map(
     (error) => `${error.severity} - ${error.code} - ${error.fault}`,
   );
