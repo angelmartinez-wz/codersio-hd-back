@@ -53,7 +53,15 @@ async function setupDatabase() {
     table.text('diagnosis').notNullable();
     table.text('date').notNullable();
     table.text('time').notNullable();
-    table.enu('status', ['Pending', 'Completed']).notNullable();
+    table.text('phone').notNullable();
+    table
+      .enu('status', [
+        'Not Required',
+        'Pending',
+        'Scheduled',
+        'New Errors Detected',
+      ])
+      .notNullable();
   });
 
   await schema.createTable('error', (table) => {
@@ -148,17 +156,19 @@ async function setupDatabase() {
       id: 'f3YzmnBZpK0o',
       userId: 'AcMJpL7b413Z',
       diagnosis: '',
+      phone: '',
       date: '2025-01-26',
       time: '13:45 PM',
-      status: 'Pending',
+      status: 'Not Required',
     },
     {
       id: 'GSwvGr28YZGU',
       userId: 'BvBNW636Z89L',
       diagnosis: '',
+      phone: '',
       date: '2025-01-26',
       time: '11:20 AM',
-      status: 'Pending',
+      status: 'Not Required',
     },
   ]);
 

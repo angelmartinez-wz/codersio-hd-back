@@ -44,37 +44,45 @@ export const MutationAppointment = {
 
   updateAppointment: async (
     _root,
-    { input: { id, diagnosis, date, time, status } },
-    { user },
+    { input: { date, time, phone } },
+    { user, appointment },
   ) => {
     validate(user);
 
-    const appointment = await updateAppointment({
-      id,
+    const appointmentId = appointment.id;
+
+    const updatedAppointment = await updateAppointment({
+      id: appointmentId,
       userId: user.id,
-      diagnosis,
       date,
       time,
-      status,
+      phone: phone || user.phone,
+      status: 'Scheduled',
     });
 
     if (!appointment) {
-      notFoundError(getError(id));
+      notFoundError(getError(appointmentId));
     }
 
-    return appointment;
+    return updatedAppointment;
   },
 
-  deleteAppointment: async (_root, { input: { id } }, { user }) => {
+  deleteAppointment: async (_root, _args, { user, appointment }) => {
     validate(user);
 
-    const appointment = await deleteAppointment({ id, userId: user.id });
+    const appointmentId = appointment.id;
+
+    const deletedAppointment = await updateAppointment({
+      id: appointmentId,
+      userId: user.id,
+      status: 'Pending',
+    });
 
     if (!appointment) {
-      notFoundError(getError(id));
+      notFoundError(getError(appointmentId));
     }
 
-    return appointment;
+    return deletedAppointment;
   },
 };
 

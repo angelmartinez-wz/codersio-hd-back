@@ -71,17 +71,29 @@ export const MutationError = {
     );
 
     const diagnosis = await getDiagnosis([...errors, ...appointmentErrors]);
-    console.log('[DIAGNOSIS]', diagnosis);
 
-    await updateAppointment({ id, userId, diagnosis });
+    await updateAppointment({
+      id,
+      userId,
+      diagnosis,
+      status: 'New Errors Detected',
+    });
 
     return errors;
   },
 
-  deleteErrors: async (_root, _args, { user }) => {
+  deleteErrors: async (_root, _args, { user, appointment }) => {
     validate(user);
-    const appointment = await getAppointmentByUserId(user.id);
+
     await deleteErrorsByAppointmentId(appointment.id);
+
+    const appointmentId = appointment.id;
+    await updateAppointment({
+      id: appointmentId,
+      userId: user.id,
+      status: 'Not Required',
+    });
+
     return true;
   },
 };

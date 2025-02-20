@@ -32,23 +32,25 @@ export async function createAppointment({ userId }) {
 export async function updateAppointment({
   id,
   userId,
-  diagnosis,
   date,
   time,
+  diagnosis,
   status,
+  phone,
 }) {
   const appointment = await getAppointmentTable().first().where({ id, userId });
   if (!appointment) {
     return null;
   }
   const updatedFields = {
-    diagnosis: diagnosis || appointment.diagnosis,
     date: date || appointment.date,
     time: time || appointment.time,
+    diagnosis: diagnosis || appointment.diagnosis,
     status: status || appointment.status,
+    phone: phone || appointment.phone,
   };
   await getAppointmentTable().update(updatedFields).where({ id, userId });
-  return { ...updatedFields, ...appointment };
+  return { ...appointment, ...updatedFields };
 }
 
 export async function deleteAppointment({ id, userId }) {

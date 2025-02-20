@@ -10,6 +10,7 @@ import schema from './src/graphql/index.js';
 import { getUser } from './src/db/users.js';
 import { getMotorcycle } from './src/db/motorcycles.js';
 import { config } from './src/config/index.js';
+import { getAppointmentByUserId } from './src/db/appointment.js';
 
 const startService = async () => {
   const app = express();
@@ -20,8 +21,10 @@ const startService = async () => {
     if (req.auth) {
       const user = await getUser(req.auth.sub);
       const motorcycle = await getMotorcycle(user.motorcycleId);
+      const appointment = await getAppointmentByUserId(user.id);
       context.user = user;
       context.motorcycle = motorcycle;
+      context.appointment = appointment;
     }
     return context;
   };

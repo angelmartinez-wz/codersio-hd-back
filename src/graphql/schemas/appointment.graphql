@@ -4,6 +4,7 @@ type Appointment {
   date: String!
   time: String!
   status: String!
+  phone: String!
   user: User!
   errors: [Error!]
 }
@@ -15,15 +16,9 @@ input CreateAppointmentInput {
 }
 
 input UpdateAppointmentInput {
-  id: ID!
-  diagnosis: String
   date: String
   time: String
-  status: String
-}
-
-input DeleteAppointmentInput {
-  id: ID!
+  phone: String
 }
 
 type Query {
@@ -34,5 +29,5 @@ type Query {
 type Mutation {
   createAppointment(input: CreateAppointmentInput!): Appointment!
   updateAppointment(input: UpdateAppointmentInput): Appointment!
-  deleteAppointment(input: DeleteAppointmentInput!): Appointment!
+  deleteAppointment: Appointment!
 }

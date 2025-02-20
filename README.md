@@ -311,6 +311,7 @@ mutation($input: UpdateAppointmentInput!) {
     date
     time
     status
+    phone
     user {
      id
      name
@@ -329,42 +330,18 @@ mutation($input: UpdateAppointmentInput!) {
 # Variables
 {
   "input": {
-    "id": "lX6qilju9NQA",
-    "diagnosis": "Discharged Battery",
-    "date": "26-12-05",
-    "time": "12:30 PM"
+    "date": "31-12-31",
+    "time": "12:30 PM",
+    "phone": "5570747295"
   }
 }
 ```
 
 ### Delete Appointment
 ```gql
-mutation($input: DeleteAppointmentInput!) {
-  deleteAppointment(input: $input) {
+mutation {
+  deleteAppointment {
     id
-    diagnosis
-    date
-    time
-    status
-    user {
-     id
-     name
-     phone
-     motorcycle {
-      id
-      color
-      plate      
-     } 
-    }
-  }
-}
-```
-
-```gql
-# Variables
-{
-  "input": {
-    "id": "lX6qilju9NQA"
   }
 }
 ```
