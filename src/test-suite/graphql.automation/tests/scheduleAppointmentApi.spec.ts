@@ -2,7 +2,7 @@ import { test, expect, request } from '@playwright/test';
 import testData from '../test-data/testData.json'
 import { GraphQueries } from '../queries/graphQueries'
 
-test.describe('login todoist', () => {
+test.describe('graphql Automation', () => {
   let graphQueries: GraphQueries
 
   test.beforeEach(async ({ request }) => {
